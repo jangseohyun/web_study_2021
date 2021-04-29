@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test014</title>
+
+<script type="text/javascript">
+	
+	// var 키워드 사용 → msg 변수 → 함수 밖에 선언 → 전역변수
+	var msg = "2021년 4월의 어느날";
+	//--var 키워드 사용 여부(생략 여부)와 관계 없이
+	//  전역변수 형태로 기능하는 상황
+	
+	function button_onclick1()
+	{
+		// alert("첫 번째 버튼 클릭");
+		
+		// var 키워드 사용 → name 변수 → 함수 내부에 선언 → 지역변수
+		//var name = "선혜연";
+		
+		// var 키워드 생략 → name 변수 → 함수 내부에 선언 → 상황에 따른 지역/전역 변수
+		name = "김서현";
+		
+		document.write("이름: "+name);
+		alert(msg);
+	}
+
+	function button_onclick2()
+	{
+		alert("두 번째 버튼 클릭");
+		
+		document.write("이름: "+name);
+		alert(msg);
+	}
+	
+</script>
+
+<!-- 
+<noscript>
+	자바스크립트가 사용되지 못할 경우 표현되는 영역
+</noscript>
+-->
+
+</head>
+<body>
+
+<input type="button" id="button1" value="Button" onclick="button_onclick1()"><br>
+<input type="button" id="button2" value="Button" onclick="button_onclick2()"><br>
+
+</body>
+</html>

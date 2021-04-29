@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test017</title>
+
+<style type="text/css">
+	
+	.tot {width: 97px;}
+	.coin {width: 80px;}
+	.btn {width: 70px; font-family: 나눔고딕코딩;}
+	input.btn:hover {color: orange;}
+	input.btn:active {color: orange; font-weight: bold;}
+	
+</style>
+
+<script type="text/javascript">
+
+	function btn_result()
+	{
+		var vMoney = document.getElementById("money").value;
+		var v500, v100, v50, v10 = 0;
+		
+		v500 = Math.floor(vMoney / 500);
+		v100 = Math.floor(vMoney % 500 / 100);
+		v50 = Math.floor(vMoney % 500 % 100 / 50);
+		v10 = Math.floor(vMoney % 500 % 100 % 50 / 10);
+		
+		document.getElementById("tot").value = vMoney;
+		document.getElementById("num500").value = v500;
+		document.getElementById("num100").value = v100;
+		document.getElementById("num50").value = v50;
+		document.getElementById("num10").value = v10;
+		
+		document.getElementById("image").src = "images/jerry.gif";
+	}
+	
+	function btn_reset()
+	{
+		document.getElementById("image").src = "";
+	}
+	
+</script>
+
+</head>
+<body>
+
+<!-- 
+	특정 금액(10~990원)을 사용자로부터 입력받아
+	화폐 단위로 구분하여 출력하는 페이지를 구성한다.
+	화폐 단위는 편의상 오백원, 백원, 오십원, 십원으로 구분한다.
+	HTML, CSS, Javascript를 활용한다.
+	
+	페이지 기본 레이아웃 구성
+	-------------------------------------------
+	
+	금액 [        ] 원
+	
+	<결과> <취소>
+	
+	총액 [        ] 원
+	오백원 [      ] 개
+	백원   [      ] 개
+	오십원 [      ] 개
+	십원   [      ] 개
+	
+	-------------------------------------------
+ -->
+ 
+<div>
+	<form>
+		금액 <input type="text" id="money" class="tot"> 원
+		<br><br>
+		&nbsp<input type="button" class="btn" value="결과" onclick="btn_result()">
+		&nbsp<input type="reset" class="btn" value="취소" onclick="btn_reset()">
+		<br><br>
+		총액 <input type="text" id="tot" class="tot" disabled="disabled"> 원
+		<br>
+		오백원 <input type="text" id="num500" class="coin" disabled="disabled"> 개
+		<br>
+		백원&nbsp&nbsp&nbsp <input type="text" id="num100" class="coin" disabled="disabled"> 개
+		<br>
+		오십원 <input type="text" id="num50" class="coin" disabled="disabled"> 개
+		<br>
+		십원&nbsp&nbsp&nbsp <input type="text" id="num10" class="coin" disabled="disabled"> 개
+		<br><br>
+		&nbsp<img src="" id="image" width="150px">
+	</form>
+</div>
+
+</body>
+</html>
