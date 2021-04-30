@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test018</title>
+
+<style type="text/css">
+	* {color: #223322;}
+	input {font-family: 나눔고딕코딩; font-weight: bold;}
+	input:focus {background-color: #eeeeff;}
+	input.btn {font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:hover {color: orange;}
+	input.txt {width:100px;}
+	input.txtScore {text-align: right;}
+	td {text-align: center;}o
+</style>
+
+<script type="text/javascript">
+	
+	function sungjuk()
+	{
+		var korStr = document.getElementById("kor").value;
+		var nKor = parseInt(korStr);
+		var engStr = document.getElementById("eng").value;
+		var nEng = parseInt(engStr);
+		var matStr = document.getElementById("mat").value;
+		var nMat = parseInt(matStr);
+		
+		var nTot = 0;
+		var nAvg = 0;
+		var panStr = "";
+		
+		// 총점 산출
+		nTot = nKor+nEng+nMat;
+		
+		// 평균 산출 → 반올림 처리
+		//nAvg = (nTot/3).toFixed(1);
+		nAvg = Math.round(nTot/3);
+		document.getElementById("avg").value = nAvg;
+		
+		if (nKor>=40 && nEng>=40 && nMat>=40 && nAvg>=60)
+			panStr = "합격";
+		else if (nAvg>=60)
+			panStr = "과락";
+		else
+			panStr = "불합격";
+		
+		document.getElementById("result").value = panStr;
+	}
+	
+</script>
+
+</head>
+<body>
+
+<!-- 
+	사용자로부터 이름, 국어점수, 영어점수, 수학점수를 입력받아
+	평균점수와 판정결과를 출력하는 페이지를 구성한다.
+	판정결과는 합격, 과락, 불합격 중 하나로 처리한다.
+	
+	합격은 모든 과목 점수가 40점 이상이면서 평균 점수가 60점 이상인 경우
+	과락은 평균이 60점 이상이지만 한 과목이라도 과목 점수가
+	40점 미만의 과목이 존재하는 경우
+	불합격은 평균이 60점 미만인 경우로 처리한다.
+	
+	HTML, CSS, Javascript 활용
+	
+	페이지 레이아웃
+	----------------------------------------------------------
+	이름		[		]
+	국어점수	[		]
+	영어점수	[		]
+	수학점수	[		]
+	
+	< 처리 결과 확인 >
+	
+	  평균		판정 결과
+	[		]	[		]
+	----------------------------------------------------------
+ -->
+
+<div>
+	<h1>점수 입력 실습</h1>
+	<hr>
+</div>
+
+<div>
+	<form>
+		<table style="width: 200px;">
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="name" class="txt"></td>
+			</tr>
+			<tr>
+				<td>국어점수</td>
+				<td><input type="text" id="kor" class="txt"></td>
+			</tr>
+			<tr>
+				<td>영어점수</td>
+				<td><input type="text" id="eng" class="txt"></td>
+			</tr>
+			<tr>
+				<td>수학점수</td>
+				<td><input type="text" id="mat" class="txt"></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="button" id="resultBtn" class="btn" value="처리 결과 확인" onclick="sungjuk()" style="width: 130px;">
+				</td>
+				<td align="center">
+					<input type="reset" id="resetBtn" class="btn" style="width: 130px;">
+				</td>
+			</tr>
+			<tr>
+				<td align="center">평균</td>
+				<td align="center">판정결과</td>
+			</tr>
+			<tr>
+				<td><input type="text" id="avg" class="txt" disabled="disabled"></td>
+				<td><input type="text" id="result" class="txt" disabled="disabled"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>

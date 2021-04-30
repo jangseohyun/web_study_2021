@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test021</title>
+
+<style type="text/css">
+
+   * {color: #223322;}
+   input {font-family: 나눔고딕코딩; font-weight: bold;}
+   input:focus {background-color: #eeeeff;}
+   input.btn {font-weight: bold; font-family: 맑은 고딕;}
+   input.btn:hover {color: orange;}
+   input.txt {text-align: center;}
+   input.textScore {text-align: right;}   
+   .txt {text-align: center; width=150px;}
+
+</style>
+
+<script type="text/javascript">
+/* 
+	function myArray()
+	{
+		var arr = (document.getElementById("uInput").value).split(" ");
+		var nMax = 0;
+		
+		document.getElementById("uTot").value = "[" + arr + "]";
+		//document.getElementById("uMax").value = Math.max.apply(null, arr);
+		
+		for (var n=0; n<=arr.length; n++)
+		{
+			if (nMax < parseInt(arr[n]))
+			{
+				nMax = parseInt(arr[n]);
+			}
+		}
+		
+		document.getElementById("uMax").value = nMax;
+	}
+	 */
+	
+	 // 강사님 풀이
+	 function myArray()
+	 {
+		 // 테스트
+		 //alert("함수 호출 확인");
+		 
+		 // 입력값을 활용하여 자바스크립트 배열 구성
+		 var tempStr = document.getElementById("uInput").value; // "20 30 10 60 40"
+		 var arr = tempStr.split(" "); // ["20", "30", "40", "50", "60"]
+		 
+		 // 배열의 전체 요소 출력
+		 //document.getElementById("txt02").value = arr;
+		 var allStr = "";
+		 for (var n= 0; n<arr.length; n++)
+			 allStr += arr[n] + " ";
+		 document.getElementById("uTot").value = allStr;
+		 
+		 // 가장 큰 수 출력
+		 var max = Number(arr[0]);
+		 for (var n=0; n<arr.length; n++)
+		 {
+			 if (max < Number(arr[n]))
+				 max = Number(arr[n]);
+		 }
+		 document.getElementById("uMax").value = max;
+	 }
+
+</script>
+
+</head>
+<body>
+
+<!-- 
+	사용자로부터 임의의 정수를 임의의 개수만큼 입력받고,
+	그 내용으로 자바스크립트 배열을 구성하여
+	그 정수들 중 가장 큰 수를 출력해줄 수 있는 페이지를 구성한다.
+	
+	HTML, CSS, Javascript 활용한다.
+	
+	페이지 레이아웃
+	------------------------------------------------------
+	데이터 입력(공백 구분) [			]
+	
+	< 결과 확인 >
+	
+	- 전체 출력  [			]
+	- 가장 큰 수 [			]
+	------------------------------------------------------
+ -->
+
+<div>
+	<h1>임의의 배열 실습</h1>
+	<hr>
+</div>
+
+<div>
+	<p>
+		데이터 입력(공백 구분)
+		<input type="text" class="txt" id="uInput">
+	</p>
+	<p>&nbsp<input type="button" class="btn" value="결과 확인" style="width: 300px" onclick="myArray()"></p>
+	<p>
+		- 전체 출력&nbsp <input type="text" class="txt" id="uTot" readonly="readonly">
+		<br>
+		- 가장 큰 수 <input type="text" class="txt" id="uMax" readonly="readonly">
+	</p>
+</div>
+
+</body>
+</html>
