@@ -5,32 +5,33 @@
 <title>Test023</title>
 
 <script type="text/javascript">
-/* 
+
 	function addMember()
 	{
 		var inputStr;
-		var arr = [];
-		var n = 1;
+		var arr = new Array();
+		var n = 0;
 		
 		do
 		{
-			inputStr = prompt("이름 전화번호("+n+") 입력: ");
-			arr.push(inputStr);
+			inputStr = prompt("이름 전화번호("+(n+1)+") 입력: ");
+			arr[n] = inputStr;
 			n++;
+			
 		} while (inputStr != "." && inputStr != "")
 		
-		var str = "전체 회원 수: "+(arr.length-1)+" 명\n"
-		          + "--------------------\n"
+		var str = "--------------------\n"
 		          + " 이름    전화번호\n"
 		          + "--------------------\n";
 		
-		for (var n=0; n<arr.length-1; n++)
+		for (var n=0; n<arr.length; n++)
 			str += arr[n] + "\n";
 		
-		document.getElementById("ta").value = str;
+		document.getElementById("txtCount").value = arr.length-1;
+		document.getElementById("txtResult").value = str;
 	}
-*/
-	
+
+/* 	
 	// 강사님 풀이
 	function addMember()
 	{
@@ -61,7 +62,7 @@
 			document.getElementById("txtResult").value += arr[n] + "\n";
 		}
 	}
-
+ */
 </script>
 
 </head>
