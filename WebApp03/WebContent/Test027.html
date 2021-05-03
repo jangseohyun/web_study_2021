@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test027</title>
+
+<script type="text/javascript">
+
+	function actionPerform()
+	{
+		var user = document.getElementById("userInput").value;
+		var userStr = RSP(user);
+		
+		var com = parseInt(Math.random()*3+1);
+		var comStr = RSP(com);
+		
+		var resultStr = "";
+		
+		if (user == com)
+			resultStr = "비겼습니다.";
+		
+		if (user == 1)
+		{
+			if (com == 3)
+				resultStr = "사용자가 이겼습니다.";
+			else if (com == 2)
+				resultStr = "컴퓨터가 이겼습니다.";
+		}
+		else if (user == 2)
+		{
+			if (com == 1)
+				resultStr = "사용자가 이겼습니다.";
+			else if (com == 3)
+				resultStr = "컴퓨터가 이겼습니다.";
+		}
+		else if (user == 3)
+		{
+			if (com == 1)
+				resultStr = "컴퓨터가 이겼습니다.";
+			else if (com == 2)
+				resultStr = "사용자가 이겼습니다.";
+		}
+			
+		document.getElementById("result").value = "사용자: "+userStr+", 컴퓨터: "+comStr+" → "+resultStr;
+	}
+	
+	function RSP(val)
+	{
+		var rsp = "";
+		
+		if (val == "1")
+			rsp = "가위";
+		else if (val == "2")
+			rsp = "바위";
+		else if (val == "3")
+			rsp = "보";
+		
+		return rsp;
+	}
+	
+	// 강사님 풀이
+	function startGame()
+	{
+		// 테스트
+		//alert("함수 호출 완료");
+		
+		var strArr = ["가위","바위","보"];
+		
+		// ※ Math.random();	--0.0 ~ 1.0 사이의 실수 형태의 난수 발생
+		// 현재 우리에게 필요한 것은 1 ~ 3의 정수 형태의 난수
+		var c = parseInt(Math.random()*3)+1;
+		
+		var u = parseInt(document.getElementById("userInput").value);
+		
+		var msg = "";
+		msg += "사용자: "+strArr[u-1]+", 컴퓨터: "+strArr[c-1];
+		
+		if (u==c)
+			msg += " → 비겼습니다.";
+		else if (u%3 == (c+2)%3) //(u==1 && c==2 || u==2 && c==3 || u==3 && c==1)
+			msg += " → 컴퓨터가 이겼습니다.";
+		else
+			msg += " → 사용자가 이겼습니다.";
+		
+		document.getElementById("result").value = msg;
+	}
+	
+</script>
+
+</head>
+<body>
+
+<!-- 
+	가위 바위 보 게임을 구성한다.
+	HTML, CSS, Javascript를 활용한다.
+	자바스크립트 난수 발생 함수를 찾아 활용할 수 있도록 한다.
+	
+	페이지 레이아웃
+	-----------------------------------------------------
+	입력(1. 가위, 2. 바위, 3. 보): [2] <게임 결과 확인>
+	
+	[사용자: 바위, 컴퓨터: 보 → 컴퓨터가 이겼습니다.]
+	-----------------------------------------------------
+ -->
+ 
+<div>
+	<h1>가위 바위 보 예제 실습</h1>
+	<hr>
+</div>
+
+<div>
+	입력(1. 가위, 2. 바위, 3. 보): <input type="text" class="txt" id="userInput" style="width: 20px;">
+	&nbsp <input type="button" value="게임 결과 확인" class="btn" id="btnResult" onclick="startGame()"> 
+	<br><br>
+	<input type="text" class="txt" id="result" style="width: 400px; height: 50px; align: center;" readonly="readonly"> 
+</div>
+
+
+
+</body>
+</html>
