@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Send03</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 
@@ -34,7 +35,7 @@
 	<hr>
 </div>
 
-<div>
+<!-- <div>
 	<form action="Recieve03.jsp" method="post">
 		정수1 <input type="text" name="n1">
 		<select name="cal">
@@ -47,6 +48,41 @@
 		<br><br>
 		<button type="submit" name="join" style="width: 150px;">결과 확인</button>
 		<button type="reset" class="btn" style="width: 150px;">취소</button>
+	</form>
+</div> -->
+
+<!-- 강사님 풀이 -->
+<div>
+	<form action="Recieve03.jsp">
+		<table class="tableMiddle">
+			<tr>
+				<th>정수1</th>
+				<th>연산자</th>
+				<th>정수2</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="num1" class="txt">
+				</td>
+				<td>
+					<select name="op">
+						<option value="+">더하기</option>
+						<option value="-">빼기</option>
+						<option value="*">곱하기</option>
+						<option value="/">나누기</option>
+					</select>
+				</td>
+				<td>
+					<input type="text" name="num2" class="txt">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
+					<button type="submit" name="join" style="width: 48%;">결과 확인</button>
+					<button type="reset" class="btn" style="width: 48%;">취소</button>
+				</td>
+			</tr>
+		</table>
 	</form>
 </div>
 
