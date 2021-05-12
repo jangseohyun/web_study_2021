@@ -17,7 +17,7 @@
 	// 현재 년, 월, 일 확인
 	int year = cal.get(Calendar.YEAR);
 	int month = cal.get(Calendar.MONTH) + 1;
-	int day = cal.get(Calendar.DAY_OF_WEEK);
+	int day = cal.get(Calendar.DATE);
 	int nalsu = 0;
 	
 	// 표시할 달력의 년, 월 구성 → 페이지 최초 요청을 감안한 코드
@@ -99,7 +99,7 @@
 	// 마지막 날짜 변수
 	int lastDay = months[month-1]; 
 	
-	// 달력 그리기
+	// 달력 그리기(내가 했던 것)
 	/* 	
 	for (int i=1; i<=6; i++)
 	{
@@ -137,6 +137,49 @@
 			calendar += "<th>" + weeks[i] + "</th>";		
 	}
 	
+	calendar += "</tr>";
+	calendar += "<tr>";
+	
+	// 빈 칸 공백 td 발생
+	for (int i=1; i<=startWeek; i++)
+		calendar += "<td></td>";
+	
+	// 날짜 td 발생
+	for (int i=1; i<=lastDay; i++)
+	{
+		//calendar += "<td>" + i + "</td>";
+		
+		startWeek++;
+		
+		if (selectYear == year && selectMonth == month && i == day && startWeek % 7 == 0)
+			calendar += "<td class='nowSat'>" + i + "</td>";
+		else if (selectYear == year && selectMonth == month && i == day && startWeek % 7 == 1)
+			calendar += "<td class='nowSun'>" + i + "</td>";
+		else if (selectYear == year && selectMonth == month && i == day)
+			calendar += "<td class='now'>" + i + "</td>";
+		else if (startWeek % 7 == 0)
+			calendar += "<td class='sat'>" + i + "</td>";
+		else if (startWeek % 7 == 1)
+			calendar += "<td class='sun'>" + i + "</td>";
+		else
+			calendar += "<td>" + i + "</td>";
+		
+		if (startWeek % 7 == 0)
+			calendar += "</tr><tr>";
+	}
+	
+	// 빈칸 공백 td 발생
+	for (int i=0; i<=startWeek; i++, startWeek++)
+	{
+		if (startWeek % 7 == 0)
+			break;
+		
+		calendar += "<td></td>";
+	}
+	
+	calendar += "</tr>";
+	calendar += "</table>";
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -144,6 +187,14 @@
 <meta charset="UTF-8">
 <title>SendandReceive07</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<style type="text/css">
+	td {text-align: right;}
+	td.sat {color: blue;}
+	td.sun {color: red;}
+	td.now {background-color: aqua; font-weight: bold;}
+	td.nowSat {background-color: aqua; font-weight: bold; color: blue;}
+	td.nowSun {background-color: aqua; font-weight: bold; color: red;}
+</style>
 <script type="text/javascript">
 
 	function objSubmit(obj)	// obj는 form 객체
@@ -206,8 +257,8 @@
 <br>
 
 <div>
+	<!--
 	<table>
-		<!-- 
 		<tr>
 			<td>일</td>
 			<td>월</td>
@@ -217,9 +268,9 @@
 			<td>금</td>
 			<td>토</td>
 		</tr>
-		 -->
-		<%=calendar %>
 	</table>
+	-->
+	<%=calendar %>
 </div>
 
 </body>
