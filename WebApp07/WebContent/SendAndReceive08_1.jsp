@@ -107,9 +107,9 @@
 	<table style="text-align: center;">
 		<tr>
 			<td style="font-size: 15pt; text-align: center;">
-				<a href="SendAndReceive08.jsp?year=<%=preYear %>&month=<%=preMonth %>">◀</a>
+				<a href="SendAndReceive08_1.jsp?year=<%=preYear %>&month=<%=preMonth %>">◀</a>
 				<b><%=year %> 년 <%=month %> 월</b>
-				<a href="SendAndReceive08.jsp?year=<%=nextYear %>&month=<%=nextMonth %>">▶</a>			
+				<a href="SendAndReceive08_1.jsp?year=<%=nextYear %>&month=<%=nextMonth %>">▶</a>			
 			</td>
 		</tr>
 	</table>
