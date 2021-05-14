@@ -17,6 +17,12 @@ body, p, div, span, input, table, th, td, select
 	width: 100%;
 }
 
+.tableMiddle
+{
+	border-collapse: collapse;
+	width: 50%;
+}
+
 .table th, table td
 {
 	border: 1px solid gray;

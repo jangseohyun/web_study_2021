@@ -3,46 +3,48 @@
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-
-	request.setCharacterEncoding("UTF-8");
-	Connection conn = DBConn.getConnection();
-
-	String name = request.getParameter("name");
-	String korStr = request.getParameter("kor");
-	String engStr = request.getParameter("eng");
-	String matStr = request.getParameter("mat");
+	// ScoreInsert.jsp
 	
-	int kor = 0;
-	int eng = 0;
-	int mat = 0;
-	int result = 0;
+	// 한글 인코딩 처리
+	request.setCharacterEncoding("UTF-8");
+	
+	// 이전 페이지(ScoreList.jsp)로부터 데이터 수신(이름, 국어점수, 영어점수, 수학점수)
+	String uName = request.getParameter("userName");
+	String uKor = request.getParameter("scoreKor");
+	String uEng = request.getParameter("scoreEng");
+	String uMat = request.getParameter("scoreMat");
 	
 	try
 	{
-		kor = Integer.parseInt(korStr);
-		eng = Integer.parseInt(engStr);
-		mat = Integer.parseInt(matStr);
+		// 데이터베이스 연결
+		Connection conn = DBConn.getConnection();
+		
+		// 쿼리문 준비 → insert 쿼리문
+		String sql = String.format("INSERT INTO TBL_SCORE(SID,NAME,KOR,ENG,MAT) VALUES(SCORESEQ.NEXTVAL,'%s',%s,%s,%s)",uName,uKor,uEng,uMat);
+		
+		// 작업객체 구성 및 쿼리문 실행 → executeUpdate → 적용된 행의 개수 반환
+		//                                                  ---------------------
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(sql);
+		
+		// 작업객체 리소스 반납
+		stmt.close();
+		
+		// 요청 페이지 분기 가능
 	}
 	catch (Exception e)
 	{
+		// 서버측 콘솔에서 확인
 		System.out.println(e.toString());
 	}
-	
-	String sql = String.format("INSERT INTO TBL_SCORE(SID,NAME,KOR,ENG,MAT) VALUES(SCORESEQ.NEXTVAL,'%s',%d,%d,%d)",name,kor,eng,mat);
-	
-	Statement stmt = conn.createStatement();
-	result = stmt.executeUpdate(sql);
-	
-	stmt.close();
-	DBConn.close();
-	
-	if (result < 1)
+	finally
 	{
-		response.sendRedirect("Error02.jsp");
+		// 데이터베이스 연결 종료
+		DBConn.close();
 	}
-	else
-	{
-		response.sendRedirect("ScoreList.jsp");
-	}
+	
+	// 클라이언트가 다시 요청해야 할 URL 전달 → sendRedirect() 메소드 활용
+	// → ScoreList.jsp
+	response.sendRedirect("ScoreList.jsp");
 	
 %>

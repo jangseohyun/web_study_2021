@@ -1,48 +1,55 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="com.util.DBConn"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="com.test.ScoreDTO"%>
+<%@page import="com.test.ScoreDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-	String str = "";
-
-	// 데이터베이스 연결
-	Connection conn = DBConn.getConnection();
+	// ScoreList_WebApp11
 	
-	// 쿼리문 준비 → 리스트를 조회하기 위한 SELECT 쿼리문
-	String sql = "SELECT SID, NAME, KOR, ENG, MAT, (KOR+ENG+MAT) AS TOT, ((KOR+ENG+MAT)/3) AS AVG FROM TBL_SCORE ORDER BY SID ASC";
+	StringBuffer str = new StringBuffer();
+	ScoreDAO dao = null;
 	
-	// 작업객체 구성 및 쿼리문 실행
-	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery(sql);
-	
-	// 타이틀 구성
-	str += "<table class='table'>";
-	str += "<tr>";
-	str += "<th>번호</th><th>이름</th>";
-	str += "<th>국어점수</th><th>영어점수</th><th>수학점수</th>";
-	str += "<th>총점</th><th>평균</th>";
-	str += "</tr>";
-	
-	// ResultSet 에 대한 처리 → 반복문 구성
-	while (rs.next())
-	{
-		str += "<tr>";
-		str += "<td class='txtNum'>" + rs.getString("SID") + "</td>";
-		str += "<td class='txtNum'>" + rs.getString("NAME") + "</td>";
-		str += "<td class='txtNum'>" + rs.getString("KOR") + "</td>";
-		str += "<td class='txtNum'>" + rs.getString("ENG") + "</td>";
-		str += "<td class='txtNum'>" + rs.getString("MAT") + "</td>";
-		str += "<td class='txtNum'>" + rs.getString("TOT") + "</td>";
-		str += "<td class='txtNum'>" + String.format("%.1f",rs.getDouble("AVG")) + "</td>";
-		str += "</tr>";
-	}
-	
-	str += "</table>";
-	
-	rs.close();
-	stmt.close();
-	DBConn.close();
+	try
+	   {
+	      dao = new ScoreDAO();
+	      
+	      str.append("<table class='table'>");
+	      str.append("<tr>");
+	      str.append("<th>번호</th><th>이름</th>");
+	      str.append("<th>국어점수</th><th>영어점수</th><th>수학점수</th>");
+	      str.append("<th>총점</th><th>평균</th>");
+	      str.append("</tr>");
+	      
+	      for(ScoreDTO score : dao.lists())
+	      {
+	    	 double avg = Double.parseDouble(score.getAvg());
+	    	 
+	         str.append("<tr>");
+	         str.append("<td class='scoreTd'>" + score.getSid() + "</td>");
+	         str.append("<td class='scoreTd'>" + score.getName() + "</td>");
+	         str.append("<td class='scoreTd'>" + score.getKor() + "</td>");
+	         str.append("<td class='scoreTd'>" + score.getEng() + "</td>");
+	         str.append("<td class='scoreTd'>" + score.getMat() + "</td>");
+	         str.append("<td class='scoreTd'>" + score.getTot() + "</td>");
+	         str.append("<td class='scoreTd'>" + String.format("%.1f",avg) + "</td>");
+	         str.append("</tr>");
+	      }
+	      str.append("");
+	      str.append("</table>");
+	   }
+	   catch(Exception e)
+	   {
+	      System.out.println(e.toString());
+	   }
+	   finally
+	   {
+	      try
+	      {
+	         dao.close();
+	      }
+	      catch(Exception e)
+	      {
+	         System.out.println(e.toString());
+	      }
+	   }
 	
 %>
 <!DOCTYPE html>
@@ -52,17 +59,20 @@
 <title>ScoreList</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
-	.errMsg {color: red; font-size: small; display: none;}
-	.txtNum {text-align: center;}
+	input {width: 200px; border-radius: 6px;}
+	button {width: 408px; height: 50px; font-family: 맑은 고딕; font-weight: bold;}
+	.record {text-align: center;}
+	.errMsg {color: red; font-size: samll; display: none;}
+	.scoreTd {text-align: center;}
 </style>
 <script type="text/javascript">
 
 	function formCheck()
 	{
 		var uName = document.getElementById("userName");
-		var uKor = document.getElementById("scoreKor");
-		var uEng = document.getElementById("scoreEng");
-		var uMat = document.getElementById("scoreMat");
+		var uKor = document.getElementById("userKor");
+		var uEng = document.getElementById("userEng");
+		var uMat = document.getElementById("userMat");
 		
 		var nameMsg = document.getElementById("nameMsg");
 		var korMsg = document.getElementById("korMsg");
@@ -94,7 +104,7 @@
 			uEng.focus();
 			return false;
 		}
-
+	
 		if (uMat.value == "" || isNaN(uMat.value) || Number(uMat.value)<0 || Number(uMat.value)>100)
 		{
 			matMsg.style.display = "inline";
@@ -110,12 +120,12 @@
 <body>
 
 <div>
-	<h1>데이터베이스 연결 및 데이터 처리</h1>
+	<h1>데이터베이스 연동 성적관리 실습</h1>
 	<hr>
 </div>
 
 <div>
-	<h2>성적 정보 리스트</h2>
+	<h2>DAO, DTO 개념 적용</h2>
 	<form action="ScoreInsert.jsp" method="post" onsubmit="return formCheck()">
 		<table class="table">
 			<tr>
@@ -128,21 +138,21 @@
 			<tr>
 				<th>국어점수</th>
 				<td>
-					<input type="text" id="scoreKor" name="scoreKor">
+					<input type="text" id="scoreKor" name="userKor">
 					<span class="errMsg" id="korMsg">0에서 100 사이의 점수를 입력해야 합니다.</span>
 				</td>
 			</tr>
 			<tr>
 				<th>영어점수</th>
 				<td>
-					<input type="text" id="scoreEng" name="scoreEng">
+					<input type="text" id="scoreEng" name="userEng">
 					<span class="errMsg" id="engMsg">0에서 100 사이의 점수를 입력해야 합니다.</span>
 				</td>
 			</tr>
 			<tr>
 				<th>수학점수</th>
 				<td>
-					<input type="text" id="scoreMat" name="scoreMat">
+					<input type="text" id="scoreMat" name="userMat">
 					<span class="errMsg" id="matMsg">0에서 100 사이의 점수를 입력해야 합니다.</span>
 				</td>
 			</tr>
@@ -153,10 +163,9 @@
 			</tr>
 		</table>
 	</form>
-	
-	<div class="div01">
-		<!-- 리스트 구성 -->
-		<%=str %>
+	<br><br>
+	<div>
+		<%=str.toString() %>
 	</div>
 </div>
 
