@@ -65,17 +65,24 @@
 			}
 			else
 			{
+				/* 기능하지 않음 */
 				str.append("<td>");
 				str.append("<button type='button' class='btn02'>");
 				str.append("입력");
 				str.append("</button>");
+				
+				str.append("<a href='MemberScoreUpdateForm.jsp?sid="+score.getSid()+"'>");
 				str.append("<button type='button' class='btn01'>");
 				str.append("수정");
 				str.append("</button>");
+				str.append("</a>");
+				
+				str.append("<a href='javascript:memberScoreDelete("+score.getSid()+",\""+score.getName()+"\")'>");
 				str.append("<button type='button' class='btn01'>");
 				str.append("삭제");
 				str.append("</button>");
 				str.append("</td>");
+				str.append("</a>");
 			}
 			
 			str.append("</tr>");
@@ -105,6 +112,17 @@
 <meta charset="UTF-8">
 <title>MemberScoreSelect</title>
 <link rel="stylesheet" type="text/css" href="css/MemberScore.css">
+<script type="text/javascript">
+
+	function memberScoreDelete(sid,name)
+	{
+		var res = confirm("번호: "+sid+", 이름: "+name+"\n이 회원의 정보를 삭제하시겠습니까?");
+		
+		if (res)
+			window.location.href="MemberScoreDelete.jsp?sid="+sid;
+	}
+
+</script>
 </head>
 <body>
 

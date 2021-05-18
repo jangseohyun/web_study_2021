@@ -29,18 +29,26 @@ public class MemberScoreDAO
 	}
 	
 	// 데이터 입력 담당 메소드(성적 데이터 입력)
-	public int add(MemberScoreDTO dto) throws SQLException
+	public int add(MemberScoreDTO score) throws SQLException
 	{
-		int result = 0;
-		
-		Statement stmt = conn.createStatement();
-		
-		String sql = String.format("INSERT INTO TBL_MEMBERSCORE(SID, KOR, ENG, MAT) VALUES(MEMBERSEQ.NEXTVAL,%s,%s,%s)",dto.getKor(),dto.getEng(),dto.getMat());
-		
-		result = stmt.executeUpdate(sql);
-		
-		return result;
+	   int result = 0;
+	      
+	   String sql = "INSERT INTO TBL_MEMBERSCORE(SID, KOR, ENG, MAT)"
+	            + " VALUES(?, ?, ?, ?)";
+	      
+	   PreparedStatement pstmt = conn.prepareStatement(sql);
+	   pstmt.setString(1, score.getSid());
+	   pstmt.setInt(2, score.getKor());
+	   pstmt.setInt(3, score.getEng());
+	   pstmt.setInt(4, score.getMat());
+	      
+	   result = pstmt.executeUpdate();
+	      
+	   pstmt.close();
+	      
+	   return result;
 	}
+
 	
 	// 성적 리스트 출력 담당 메소드
 	public ArrayList<MemberScoreDTO> lists() throws SQLException
@@ -114,4 +122,34 @@ public class MemberScoreDAO
 	   return result;
 	}
 
+	// 회원 데이터 수정 담당 메소드
+	public int modify(MemberScoreDTO dto) throws SQLException
+	{
+		int result = 0;
+			
+		String sql = String.format("UPDATE TBL_MEMBERSCORE SET KOR=%s, ENG=%s, MAT=%s WHERE SID=%s",dto.getKor(),dto.getEng(),dto.getMat(),dto.getSid());
+			
+		Statement stmt = conn.createStatement();
+			
+		result = stmt.executeUpdate(sql);
+			
+		return result;
+	}
+	
+	// 회원 데이터 삭제 담당 메소드
+	public int remove(String sid) throws SQLException
+	{
+		int result = 0;
+			
+		String sql = "DELETE FROM TBL_MEMBERSCORE WHERE SID=?";
+			
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, sid);
+		
+		result = pstmt.executeUpdate();
+			
+		pstmt.close();
+			
+		return result;
+	}
 }
