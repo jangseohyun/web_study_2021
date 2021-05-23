@@ -5,31 +5,41 @@
 	
 	Calendar cal = Calendar.getInstance();
 	
-	int year = cal.get(Calendar.YEAR);
-	int month = cal.get(Calendar.MONTH) + 1;
+	int nowYear = cal.get(Calendar.YEAR);
+	int nowMonth = cal.get(Calendar.MONTH) + 1;
 	int day = cal.get(Calendar.DATE);
 	int nalsu = 0;
 	
-	String monthChangePre = request.getParameter("pre");
-	String monthChangePos = request.getParameter("pos");
-	int monthChange = 0;
+	String strYear = request.getParameter("year");
+	String strMonth = request.getParameter("month");
+	int selectYear = Integer.parseInt(strYear);
+	int selectMonth = Integer.parseInt(strMonth);
 	
-	out.print(monthChangePre);
+	int year = nowYear;
+	int month = nowMonth;
 	
-	if (monthChangePre != null)
-		monthChange = -1;
-	else if (monthChangePos != null)
-		monthChange = 1;
+	if(strYear != null)
+		year = Integer.parseInt(strYear);
+	if(strMonth != null)
+		month = Integer.parseInt(strMonth);
 	
-	month += monthChange;
+	int preYear = year;
+	int preMonth = month-1;
 	
-	if (month == 0)
-		month = 12;
-	else if (month == 13)
-		month = 1;
+	if(preMonth<1)
+	{
+		preYear = year-1;
+		preMonth = 12;
+	}
 	
-	int selectYear = year;
-	int selectMonth = month;
+	int nextYear = year;
+	int nextMonth = month+1;
+	
+	if(nextMonth>12)
+	{
+		nextYear = year+1;
+		nextMonth = 1;
+	}
 	
 	int[] months = {31,28,31,30,31,30,31,31,30,31,30,31};
 	
@@ -141,9 +151,9 @@
 </div>
 
 <div>
-	<a href="SendAndReceive08.jsp?year=<%=year %>&month=<%=month %>">◀</a>
-	&nbsp<%=year %> 년 <%=month %> 월&nbsp
-	<a href="SendAndReceive08.jsp?year=<%=year %>&month=<%=month %>">▶</a>
+	<a href="SendAndReceive08.jsp?year=<%=preYear %>&month=<%=preMonth %>">◀</a>
+	&nbsp;<%=year %> 년 <%=month %> 월&nbsp;
+	<a href="SendAndReceive08.jsp?year=<%=nextYear %>&month=<%=nextMonth %>">▶</a>
 </div>
 
 <div>
