@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body, p, div, span, input, table, th, td, select
 {
 	font-size: 18px;
@@ -7,7 +9,7 @@ body, p, div, span, input, table, th, td, select
 
 .control
 {
-	border: 1px solid gray;
+	border: 1px solid grey;
 	border-radius: 3px;
 }
 
@@ -17,9 +19,9 @@ body, p, div, span, input, table, th, td, select
 	width: 100%;
 }
 
-.table th, table td
+.table th, .table td
 {
-	border: 1px solid gray;
+	border: 1px solid grey;
 	border-left: 0px;
 	border-right: 0px;
 	padding: 3px;
@@ -42,3 +44,5 @@ body, p, div, span, input, table, th, td, select
 	color: orange;
 	background-color: #778877;
 }
+
+

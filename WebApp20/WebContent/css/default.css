@@ -13,7 +13,7 @@ input
 	border-radius: 4px;
 }
 
-button:hover
+button:hovor
 {
 	color: orange;
 }
@@ -28,6 +28,7 @@ button:hover
 	border: 1px solid gray;
 	border-left: 0px;
 	border-right: 0px;
+	
 	padding: 3px;
 	line-height: 150%;
 	text-align: center;
@@ -42,7 +43,7 @@ button:hover
 .btn01
 {
 	font-size: 10pt;
-	color: #8f42ed;
+	color: blue;
 	width: 45px;
 	height: 30px;
 }
@@ -52,10 +53,10 @@ button:hover
 	font-size: 10pt;
 	color: gray;
 	width: 45px;
-	height: 30px;
+	height: 30px
 }
 
-.btn-2:hover
+.btn02:hover
 {
 	color: gray;
 }
@@ -63,18 +64,8 @@ button:hover
 .errMsg
 {
 	font-size: small;
-	color: red;
+	color:red;
 	display: none;
-}
-
-.numTh
-{
-	width: 50px;
-}
-
-.nameTh
-{
-	width: 100px;
 }
 
 .numTh
@@ -92,18 +83,18 @@ button:hover
 	width: 150px;
 }
 
-.txtScore
-{
-	width: 50px;
-}
-
 .manageTh
 {
 	width: 200px;
 }
 
+.scoreTh
+{
+	witdh: 200;
+}
+
 .txtScore
 {
 	width: 100px;
-	text-aling: right;
+	text-align: right;
 }

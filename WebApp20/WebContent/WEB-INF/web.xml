@@ -15,16 +15,15 @@
 	
 	<!-- 서블릿 매핑 샘플 -->
 	<!-- 
-	<servlet>
+	<sevlet>
 		<servlet-name></servlet-name>
 		<servlet-class></servlet-class>
-	</servlet>
+	</sevlet>
 	
 	<servlet-mapping>
 		<servlet-name></servlet-name>
 		<url-pattern></url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> 
 	-->
-	
 	
 </web-app>
