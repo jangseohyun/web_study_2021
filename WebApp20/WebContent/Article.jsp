@@ -109,7 +109,7 @@
 				if (beforeNum != -1)
 				{
 				%>
-				<a href="">이전글: (<%=beforeNum%>) <%=dtoBefore.getSubject()%></a>
+				<a href="<%=cp %>/Article.jsp?pageNum=<%=pageNum %>&num=<%=beforeNum %>">이전글: (<%=beforeNum%>) <%=dtoBefore.getSubject()%></a>
 				<%
 				}
 				else
@@ -128,7 +128,7 @@
 				if (nextNum != -1)
 				{
 				%>
-				<a href="">다음글: (<%=nextNum%>) <%=dtoNext.getSubject()%></a>
+				<a href="<%=cp %>/Article.jsp?pageNum=<%=pageNum %>&num=<%=nextNum %>">다음글: (<%=nextNum%>) <%=dtoNext.getSubject()%></a>
 				<%
 				}
 				else
