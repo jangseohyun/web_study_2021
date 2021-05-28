@@ -82,7 +82,7 @@
 					<input type="text" id="mat" name="mat" class="txt">
 				</td>
 			</tr>
-			<tr><td colspan="2">&nbsp</td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
 			<tr>
 				<td colspan="2">
 					<button type="submit" id="btnSubmit" class="btn" style="width: 180px;">성적 추가</button>

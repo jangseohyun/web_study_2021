@@ -20,6 +20,12 @@
 	{
 		MemberDTO dto = new MemberDTO(names[i],tels[i],addrs[i]);
 		lists.add(dto);
+		/*
+		MemberDTO ob = new MemberDTO(request.getParameter("name"+i)
+									,request.getParameter("tel"+i)
+									,request.getParameter("addr"+i));
+		lists.add(ob);
+		*/
 	}
 	
 	request.setAttribute("lists",lists);
