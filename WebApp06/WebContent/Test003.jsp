@@ -1,8 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%
-	String str = "include 디렉티브와 관련된 실습입니다.";
-	String name = "장서현";
-%>
 <!DOCTYPE html>
 <html>
 <head>

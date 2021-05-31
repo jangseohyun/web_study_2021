@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page buffer="8kb" autoFlush="true"%>
+<%-- <%@ page buffer="1kb" autoFlush="false"%> 일 경우 에러 발생 --%>
+<%-- <%@ page buffer="10kb" autoFlush="false"%> 일 경우 정상 처리 --%>
+<%-- <%@ page buffer="1kb" autoFlush="true"%> 일 경우 정상 처리 --%>
 <!DOCTYPE html>
 <html>
 <head>

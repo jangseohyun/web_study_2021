@@ -110,13 +110,114 @@
 -----------------------------------------------------------------------
 
 
-○ MVC 관련 실습 1
+○ MVC 관련 실습 1 (수정)
 
    - prj: WebApp24
 
      * MVCBegin.jsp	→ View 역할 (JSP 페이지)
+                           -------------------------------
+                         경로 변경(WEB-INF/view/MVCBegin.jsp)
+
      * MVCBegin.java	→ Controller 역할 (서블릿 클래스)
+                           -------------------------------
+                                  뷰 지정 경로 변경
+
      * web.xml		→ URL 매핑
 
    - 사용자 최초 요청 주소
      http://localhost:8090/WebApp24/mvcbegin
+
+
+○ MVC 관련 실습 2
+
+   - prj: WebApp24
+
+     * MVCSample01.jsp	→ View 역할 (JSP 페이지)
+     * MVCSample01.java	→ Controller 역할 (서블릿 클래스)
+     * web.xml		→ URL 매핑
+
+   - 사용자 최초 요청 주소
+     http://localhost:8090/WebApp24/mvcbegin
+
+
+○ MVC 관련 실습 3
+
+   - prj: WebApp24
+
+     * MVCSample02.jsp		→ View 역할 (JSP 페이지)
+     * MVCSample02.java		→ Controller 역할 (서블릿 클래스)
+     * MVCSample02Model.java	→ Model 역할 (일반 자바 클래스)
+     * web.xml		→ URL 매핑
+
+   - 사용자 최초 요청 주소
+     http://localhost:8090/WebApp24/mvcbegin
+
+
+-----------------------------------------------------------------------
+
+
+○ 폼(form) 데이터 전송 및 수신 과정 비교
+
+   ※ MVC 패턴 적용 이전 단계와 MVC 패턴 적용 이후 단계를
+      비교하여 이해할 수 있도록 할 것.
+
+   - A
+   ·prj: WebApp25
+
+     * HelloSend01.html	
+     * HelloRecieve01.jsp
+
+   - 사용자 최초 요청 주소
+     http://localhost:8090/WebApp25/HelloSend01.html
+
+   - B
+   ·prj: WebApp26
+
+     * web.xml
+     * HelloSend02.html	
+     * HelloRecieve02.java
+
+   ·사용자 최초 요청 주소
+     http://localhost:8090/WebApp26/HelloSend02.html
+
+   - C
+   ·prj: WebApp27
+
+     * web.xml
+     * HelloSend03.html	
+     * HelloSend03Controller.java	
+     * HelloRecieve03.java
+     * HelloRecieve03Controller.java
+     * HelloRecieve03Model.java
+     * HelloRecieve03.jsp
+
+   ·사용자 최초 요청 주소
+     http://localhost:8090/WebApp27/hello
+
+
+-----------------------------------------------------------------------
+
+
+○ 폼(form) 데이터 전송 및 수신 과정 + DB 액션 처리
+
+   - prj: WebApp28
+
+     * WebApp_scott.sql
+     * web.xml
+
+     * MemberInsertForm.jsp
+     * MemberInsert.jsp
+     * MemberList.jsp
+
+     * com.util.mvc.DBConn.java
+     * com.test.mvc.MemberDTO.java
+     * com.test.mvc.MemberDAO.java
+     * com.test.mvc.MemberInsertFormController.java
+     * com.test.mvc.MemberInsertController.java
+     * com.test.mvc.MemberListController.java
+     * com.test.mvc.MemberInsertFormModel.java
+     * com.test.mvc.MemebrInsertModel.java
+     * com.test.mvc.MemberListModel.java
+
+   - 사용자 최초 요청 주소
+     http://localhost:8090/WebApp28/memberlist
