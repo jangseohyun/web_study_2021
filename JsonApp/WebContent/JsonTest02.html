@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>JsonTest02.html</title>
+<script type="text/javascript">
+	
+	var myJsonObject2 =
+	{
+		"test":"hello"
+	}
+	
+</script>
+</head>
+<body>
+
+<form>
+	<!-- <input type="button" value="click" onclick="alert(myJsonObject)"> -->
+	<!-- [object object] -->
+	
+	<!-- <input type="button" value="click2" onclick="alert(typeof myJsonObject)"> -->
+	<!-- [object] -->
+	
+	<input type="button" value="click" onclick="alert(myJsonObject2.test)">
+	<!-- hello -->
+	
+	<input type="button" value="click2"
+	onclick="myJsonObject2.test='new test'; alert(myJsonObject2.test)">
+	<!-- new test -->
+</form>
+
+</body>
+</html>

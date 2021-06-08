@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>JsonTest06.html</title>
+<script type="text/javascript">
+	
+	// ①
+	/* 
+	var myJsonObject6 =
+	{
+		"test":123
+	}
+	*/
+	
+	// ②
+	/* 
+	var myJsonObject6 =
+	{
+		"test":123.456
+	}
+	*/
+	
+	// ③
+	/* 
+	var myJsonObject6 =
+	{
+		"test":true
+	}
+	*/
+
+	// ④
+	var myJsonObject6 =
+	{
+		"test":null
+	}
+	
+</script>
+</head>
+<body>
+
+<form action="">
+	<input type="button" value="click1" onclick="alert(myJsonObject6.test)">
+	<!-- ① 123 -->
+	<!-- ② 123.456 -->
+	<!-- ③ true -->
+	<!-- ④ null -->
+	<input type="button" value="click2" onclick="alert(typeof myJsonObject6.test)">
+	<!-- ① number -->
+	<!-- ② number -->
+	<!-- ③ boolean -->
+	<!-- ④ object -->
+	
+	<br><br>
+	
+	<input type="button" value="click3"
+	onclick="myJsonObject6.test=false; alert(myJsonObject6.test)">
+	<!-- ⑤ false -->
+	<input type="button" value="click4"
+	onclick="myJsonObject6.test=false; alert(typeof myJsonObject6.test)">
+	<!-- ⑤ boolean -->
+	
+	<br><br>
+	
+	<input type="button" value="click5"
+	onclick="myJsonObject6.test=123; alert(myJsonObject6.test)">
+	<!-- ⑥ 123 -->
+	<input type="button" value="click6"
+	onclick="myJsonObject6.test=123; alert(typeof myJsonObject6.test)">
+	<!-- ⑥ number -->
+	
+	<br><br>
+	
+	<input type="button" value="click5"
+	onclick="myJsonObject6.test='123'; alert(myJsonObject6.test)">
+	<!-- ⑦ 123 -->
+	<input type="button" value="click6"
+	onclick="myJsonObject6.test='123'; alert(typeof myJsonObject6.test)">
+	<!-- ⑦ string -->
+</form>
+
+</body>
+</html>
